@@ -5,6 +5,10 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShopSystem2024", "PhoneShopSystem2024.csproj", "{BA7D0A43-C180-4C95-8BF4-684FD3B99651}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShopSystem.Core", "..\PhoneShopSystem.Core\PhoneShopSystem.Core.csproj", "{79A6F1C9-5E46-48DD-866A-FC9B626C20D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneShopSystem.Infrastructure", "..\PhoneShopSystem.Infrastructure\PhoneShopSystem.Infrastructure.csproj", "{204FE146-A361-4E8B-AAF0-BA6EF5B3FC01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BA7D0A43-C180-4C95-8BF4-684FD3B99651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA7D0A43-C180-4C95-8BF4-684FD3B99651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA7D0A43-C180-4C95-8BF4-684FD3B99651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A6F1C9-5E46-48DD-866A-FC9B626C20D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79A6F1C9-5E46-48DD-866A-FC9B626C20D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79A6F1C9-5E46-48DD-866A-FC9B626C20D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79A6F1C9-5E46-48DD-866A-FC9B626C20D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{204FE146-A361-4E8B-AAF0-BA6EF5B3FC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{204FE146-A361-4E8B-AAF0-BA6EF5B3FC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{204FE146-A361-4E8B-AAF0-BA6EF5B3FC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{204FE146-A361-4E8B-AAF0-BA6EF5B3FC01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
