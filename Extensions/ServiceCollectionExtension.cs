@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PhoneShopSystem2024.Infrastructure.Data;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -15,10 +16,10 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddAplicationDbContext(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config.GetConnectionString("DefaultConnection");
-            services.AddDbContext<HouseRentingDbContext>(options =>
+            services.AddDbContext<PhoneShopSystemDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            services.AddScoped<IRepository, Repository>();
+          //  services.AddScoped<IRepository, Repository>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -35,10 +36,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
-                    .AddEntityFrameworkStores<HouseRentingDbContext>();
+                    .AddEntityFrameworkStores<PhoneShopSystemDbContext>();
 
             return services;
         }
     }
-}
 }
