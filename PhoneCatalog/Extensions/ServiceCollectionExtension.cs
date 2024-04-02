@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PhoneCatalog.Infrastructure.Data;
+using PhoneCatalog.Infrastructure.Data.Common;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -19,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddDbContext<PhoneCatalogDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            //services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IRepository, Repository>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
