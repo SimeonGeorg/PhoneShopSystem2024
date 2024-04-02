@@ -30,6 +30,14 @@ namespace PhoneCatalog.Infrastructure.Data
                 .HasForeignKey(c => c.PhoneId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<Comment>()
+                .HasOne(c=>c.Owner)
+                .WithMany(o=>o.Comments)
+                .HasForeignKey(c=>c.OwnerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            
+
 
             //builder.ApplyConfiguration(new CategoryTypeConfiguration());
             //builder.ApplyConfiguration(new CommentConfiguration());
