@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using PhoneCatalog.Infrastructure.Data.Models;
 
 namespace PhoneCatalog.Infrastructure.Data.SeedDb
 {
-    internal  class SeedData
+    internal class SeedData
     {
         public IdentityUser OwnerUser { get; set; }
         public IdentityUser GuestUser { get; set; }
@@ -31,10 +25,10 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
             SeedUsers();
             SeedOwner();
             SeedCategories();
+            SeedPhones();
             SeedComment();
             SeedPerformances();
-            SeedPhones();
-           
+
         }
 
         private void SeedUsers()
@@ -51,7 +45,7 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
             };
 
             OwnerUser.PasswordHash =
-                 hasher.HashPassword(OwnerUser, "owner123");
+                 hasher.HashPassword(OwnerUser, "iphone123");
 
             GuestUser = new IdentityUser()
             {
@@ -71,29 +65,23 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
             IphoneOwner = new Owner()
             {
                 Id = 1,
-                Name = "Simeon",
                 PhoneNumber = "0882515555",
-                Email = "Simeon@mail.com",
                 UserId = OwnerUser.Id
             };
 
             SamsungOwner = new Owner()
             {
                 Id = 2,
-                Name = "Petar",
                 PhoneNumber = "0882616666",
-                Email = "Petar@mail.com",
                 UserId = OwnerUser.Id
             };
             NokiaOwner = new Owner()
             {
                 Id = 3,
-                Name = "Svetlio",
                 PhoneNumber = "0888777444",
-                Email = "Svetlio@mail.com",
                 UserId = OwnerUser.Id
             };
-            
+
         }
 
         private void SeedCategories()
@@ -109,52 +97,7 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
                 Name = "MobilePhone"
             };
         }
-        private void SeedComment()
-        {
-            PositiveComment = new Comment()
-            {
-                Id = 1,
-                CommentText = "This phone is very good for me. Its very fast and have a good camera for photo!",
-                PhoneId = Iphone.Id,
-                OwnerId = NokiaOwner.Id
-            };
 
-        }
-        private void SeedPerformances()
-        {
-            IphonePerformance = new Performance()
-            {
-                Id = 1,
-                Ram = "6 GB ",
-                Processor = "6‑Core CPU with 2 performance and 4 efficiency Core",
-                Storage = "256 GB",
-                CameraPxl = "12MP Ultra Wide",
-                Battery = "Lithium ion batteries 4000mAh",
-                PhoneId = Iphone.Id
-            };
-
-            SamsungPerformance = new Performance()
-            {
-                Id = 2,
-                Ram = "8 GB ",
-                Processor = "8 Core 3.39GHz",
-                Storage = "512 GB",
-                CameraPxl = "200.0 MP + 50.0 MP + 12.0 MP + 10.0 MP",
-                Battery = "Lithium ion batteries 5000mAh",
-                PhoneId = Samsung.Id
-            };
-
-            SamsungPerformance = new Performance()
-            {
-                Id = 3,
-                Ram = "512MB ",
-                Processor = "1 Core",
-                Storage = "16 GB",
-                CameraPxl = "No Camera",
-                Battery = " 1450 mAh",
-                PhoneId = Nokia.Id
-            };
-        }
 
         private void SeedPhones()
         {
@@ -191,8 +134,55 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
                 CategoryId = MobilePhoneCategory.Id
             };
         }
+        private void SeedPerformances()
+        {
+            IphonePerformance = new Performance()
+            {
+                Id = 1,
+                Ram = "6 GB ",
+                Processor = "6‑Core CPU 2 performance 4 efficiency Core",
+                Storage = "256 GB",
+                CameraPxl = "12MP Ultra Wide",
+                Battery = "Lithium ion batteries 4000mAh",
+                PhoneId = Iphone.Id
+            };
 
+            SamsungPerformance = new Performance()
+            {
+                Id = 2,
+                Ram = "8 GB ",
+                Processor = "8 Core 3.39GHz",
+                Storage = "512 GB",
+                CameraPxl = "200.0 MP + 50.0 MP + 12.0 MP + 10.0 MP",
+                Battery = "Lithium ion batteries 5000mAh",
+                PhoneId = Samsung.Id
+            };
+
+            NokiaPerformance = new Performance()
+            {
+                Id = 3,
+                Ram = "512MB ",
+                Processor = "1 Core",
+                Storage = "16 GB",
+                CameraPxl = "No Camera",
+                Battery = " 1450 mAh",
+                PhoneId = Nokia.Id
+            };
+
+        }
+        private void SeedComment()
+        {
+            PositiveComment = new Comment()
+            {
+                Id = 1,
+                CommentText = "This phone is very good for me. Its very fast and have a good camera for photo!",
+                PhoneId = Iphone.Id,
+                OwnerId = NokiaOwner.Id
+            };
+
+        }
     }
-}
+    }
+
 
 

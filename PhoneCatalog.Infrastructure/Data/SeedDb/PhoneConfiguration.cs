@@ -27,7 +27,7 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
 
             var data = new SeedData();
 
-            builder.HasData(new Phone[] { data.Iphone, data.Samsung, data.Nokia });
+          builder.HasData(new Phone[] { data.Iphone, data.Samsung, data.Nokia });
         }
     }
 }

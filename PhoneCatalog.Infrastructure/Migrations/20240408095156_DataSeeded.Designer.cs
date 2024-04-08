@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhoneCatalog.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using PhoneCatalog.Infrastructure.Data;
 namespace PhoneCatalog.Infrastructure.Migrations
 {
     [DbContext(typeof(PhoneCatalogDbContext))]
-    partial class PhoneCatalogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240408095156_DataSeeded")]
+    partial class DataSeeded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

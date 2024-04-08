@@ -9,7 +9,8 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
         public void Configure(EntityTypeBuilder<IdentityUser> builder)
         {
             var data = new SeedData();
-            builder.HasData(new IdentityUser[] { data.GuestUser, data.OwnerUser });
+
+            builder.HasData(new IdentityUser[] { data.OwnerUser, data.GuestUser });
         }
     }
 }

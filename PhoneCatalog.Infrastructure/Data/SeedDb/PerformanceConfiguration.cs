@@ -15,7 +15,7 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
         {
             var data = new SeedData();
 
-            builder.HasData(new Performance[] { data.IphonePerformance, data.SamsungPerformance, data.NokiaPerformance });
+           builder.HasData(new Performance[] { data.IphonePerformance , data.SamsungPerformance, data.NokiaPerformance });
         }
     }
 }

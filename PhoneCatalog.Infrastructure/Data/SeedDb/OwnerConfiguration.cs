@@ -15,7 +15,7 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
         public void Configure(EntityTypeBuilder<Owner> builder)
         {
             var data = new SeedData();
-            builder.HasData(new Owner[] { data.IphoneOwner, data.SamsungOwner, data.NokiaOwner });
+            builder.HasData(new Owner[] { data.IphoneOwner, data.SamsungOwner , data.NokiaOwner });
         }
     }
 }
