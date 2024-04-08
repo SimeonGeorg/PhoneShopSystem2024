@@ -1,21 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PhoneCatalog.Core.Contracts;
 using PhoneCatalog.Models;
 using System.Diagnostics;
 
 namespace PhoneCatalog.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IPhoneService phoneService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IPhoneService _phoneService
+            )
         {
             _logger = logger;
+            phoneService = _phoneService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await phoneService.AllPhonesAsync();
+            return View(model);
         }
 
         public IActionResult Privacy()
