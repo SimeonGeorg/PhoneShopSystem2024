@@ -1,8 +1,96 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://m-cdn.phonearena.com/images/article/64576-wide-two_1200/The-Best-Phones-to-buy-in-2024---our-top-10-list.jpg?1712577497');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+        .btn-login {
+            background-color: #28a745;
+        }
+
+            .btn-login:hover {
+                background-color: #218838;
+            }
+
+        .btn-register {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+            .btn-register:hover {
+                background-color: #e0a800;
+            }
+    </style>
+</head>
+<body>
+    <header>
+      
+    </header>
+    <div class="container">
+        <h1>Welcome to Our Website</h1>
+        <p>Discover amazing features and benefits!</p>
+        <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="btn btn-register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </div>
+</body>
+</html>
