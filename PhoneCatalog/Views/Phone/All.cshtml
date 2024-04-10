@@ -1,0 +1,61 @@
+﻿@model IEnumerable<AllPhoneServiceModel>
+
+@{
+    ViewBag.Title = "All Phones";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .phone-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .phone-card {
+            width: 200px; /* Set the width of each phone card */
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .phone-image {
+            width: 100%; /* Make the image fill the container */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .phone-details {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">All Phones</h2>
+    <div class="phone-container">
+        @foreach (var phone in Model)
+        {
+            <div class="phone-card">
+                <img src="@phone.ImageUrl" class="phone-image" />
+                <div class="phone-details">
+                    <p><strong>@phone.Brand</strong></p>
+                    <p>@phone.Model</p>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>
