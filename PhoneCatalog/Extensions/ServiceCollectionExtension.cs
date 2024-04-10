@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PhoneCatalog.Core.Contracts;
+using PhoneCatalog.Core.Services;
 using PhoneCatalog.Infrastructure.Data;
 using PhoneCatalog.Infrastructure.Data.Common;
 
@@ -9,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddAplicationServices(this IServiceCollection services)
         {
-
+            services.AddScoped<IPhoneService, PhoneService>();
 
             return services;
         }
