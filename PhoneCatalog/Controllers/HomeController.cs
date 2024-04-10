@@ -22,7 +22,11 @@ namespace PhoneCatalog.Controllers
         [AllowAnonymous]
         public  IActionResult Index()
         {
-            return View();
+            if (!User?.Identity?.IsAuthenticated ?? true)
+            {
+                return View();
+            }
+            return RedirectToAction("All","Phone");
         }
 
         public IActionResult Privacy()
