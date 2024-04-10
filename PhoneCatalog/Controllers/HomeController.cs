@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PhoneCatalog.Core.Contracts;
 using PhoneCatalog.Models;
 using System.Diagnostics;
@@ -18,11 +19,10 @@ namespace PhoneCatalog.Controllers
             _logger = logger;
             phoneService = _phoneService;
         }
-
-        public async Task<IActionResult> Index()
+        [AllowAnonymous]
+        public  IActionResult Index()
         {
-            var model = await phoneService.AllPhonesAsync();
-            return View(model);
+            return View();
         }
 
         public IActionResult Privacy()
