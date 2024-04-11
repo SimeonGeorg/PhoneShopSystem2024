@@ -38,6 +38,7 @@ namespace PhoneCatalog.Core.Models.Phone
         [Display(Name = "Image URL")]
         [Required(ErrorMessage = RequiredMessage)]
         public string ImageUrl { get; set; } = string.Empty;
+        
        
        
     }

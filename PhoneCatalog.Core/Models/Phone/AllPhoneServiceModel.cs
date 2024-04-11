@@ -1,6 +1,6 @@
 ﻿using PhoneCatalog.Core.Contracts;
 
-namespace PhoneCatalog.Core.Models
+namespace PhoneCatalog.Core.Models.Phone
 {
     public class AllPhoneServiceModel : IPhoneModel
     {
