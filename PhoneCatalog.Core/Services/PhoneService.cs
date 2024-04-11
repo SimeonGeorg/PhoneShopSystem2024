@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PhoneCatalog.Core.Contracts;
-using PhoneCatalog.Core.Models;
+using PhoneCatalog.Core.Models.Phone;
 using PhoneCatalog.Infrastructure.Data.Common;
 using PhoneCatalog.Infrastructure.Data.Models;
 
@@ -27,6 +28,37 @@ namespace PhoneCatalog.Core.Services
                     })
                     .ToListAsync();
             
+        }
+
+        public async Task<IEnumerable<PhoneServiceModel>> AllPhonesByOwnerIdAsync(int ownerId)
+        {
+            return await repository.AllNoTracking<Phone>()
+                
+               .Where(p => p.OwnerId == ownerId)
+               .Select(p => new PhoneServiceModel()
+               {
+                   Id = p.Id,
+                   Brand = p.Brand,
+                   Model = p.Model,
+                   ImageUrl = p.ImageUrl,
+                   Price = p.Price,
+               })
+               .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PhoneServiceModel>> AllPhonesByUserIdAsync(string userId)
+        {
+            return await repository.AllNoTracking<Phone>()
+                .Where(p=>p.Owner.UserId == userId)
+                .Select(p => new PhoneServiceModel()
+                {
+                    Id = p.Id,
+                    Brand = p.Brand,
+                    Model = p.Model,
+                    ImageUrl = p.ImageUrl,
+                    Price = p.Price,
+                })
+                .ToListAsync();
         }
     }
 }
