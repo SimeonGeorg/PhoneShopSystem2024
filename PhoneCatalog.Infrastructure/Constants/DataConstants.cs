@@ -23,6 +23,9 @@ namespace PhoneCatalog.Infrastructure.Constants
         public const int PhonePerformanceMinLength = 5;
         public const int PhonePerformanceMaxLength = 50;
 
+        public const string PhonePriceMinimum = "0";
+        public const string PhonePriceMaximum = "3000";
+
         public const int OwnerNameMinLenght = 5;
         public const int OwnerNameMaxLength = 100;
 
