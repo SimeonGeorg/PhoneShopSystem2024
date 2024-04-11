@@ -1,4 +1,4 @@
-﻿using PhoneCatalog.Core.Models;
+﻿using PhoneCatalog.Core.Models.Phone;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +10,8 @@ namespace PhoneCatalog.Core.Contracts
     public interface IPhoneService
     {
         Task<IEnumerable<AllPhoneServiceModel>> AllPhonesAsync();
+        Task<IEnumerable<PhoneServiceModel>> AllPhonesByOwnerIdAsync(int ownerId);
+        Task<IEnumerable<PhoneServiceModel>> AllPhonesByUserIdAsync(string userId);
+
     }
 }
