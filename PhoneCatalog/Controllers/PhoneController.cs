@@ -11,6 +11,7 @@ namespace PhoneCatalog.Controllers
         private readonly ILogger<PhoneController> _logger;
         private readonly IPhoneService phoneService;
         private readonly IOwnerService ownerService;
+      
 
         public PhoneController(
             ILogger<PhoneController> logger,
@@ -20,7 +21,6 @@ namespace PhoneCatalog.Controllers
             _logger = logger;
             phoneService = _phoneService;
             ownerService = _ownerService;
-
         }
 
         public async Task<IActionResult> All()
@@ -49,5 +49,20 @@ namespace PhoneCatalog.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            if (await phoneService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+            
+            var model = await phoneService.PhoneDetailsByIdAsync(id);
+            model.Performances = await phoneService.PerformanceDetailsByPhoneIdAsync(model.Id);
+                  
+            return View(model);
+        }
+
     }
 }
