@@ -275,7 +275,7 @@ namespace PhoneCatalog.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoryTypes");
+                    b.ToTable("CategoryTypes", (string)null);
 
                     b.HasComment("Phone category");
 
@@ -321,7 +321,7 @@ namespace PhoneCatalog.Infrastructure.Migrations
 
                     b.HasIndex("PhoneId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
 
                     b.HasComment("Phone comment");
 
@@ -358,7 +358,7 @@ namespace PhoneCatalog.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Owners");
+                    b.ToTable("Owners", (string)null);
 
                     b.HasComment("Phone Owner");
 
@@ -430,7 +430,7 @@ namespace PhoneCatalog.Infrastructure.Migrations
 
                     b.HasIndex("PhoneId");
 
-                    b.ToTable("Performances");
+                    b.ToTable("Performances", (string)null);
 
                     b.HasComment("Phone Performance");
 
@@ -511,7 +511,7 @@ namespace PhoneCatalog.Infrastructure.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Phones");
+                    b.ToTable("Phones", (string)null);
 
                     b.HasComment("Phone to publish");
 

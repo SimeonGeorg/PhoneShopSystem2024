@@ -45,7 +45,8 @@ namespace PhoneCatalog.Infrastructure.Data.SeedDb
             };
 
             OwnerUser.PasswordHash =
-                 hasher.HashPassword(OwnerUser, "iphone123");
+                 hasher.HashPassword(OwnerUser, "owner123");
+
 
             GuestUser = new IdentityUser()
             {
