@@ -10,5 +10,8 @@ namespace PhoneCatalog.Core.Contracts
     {
         Task<bool> IsExistByIdAsync(string userId);
         Task<int?> GetOwnerIdAsync(string userId);
+        Task CreateAsync(string userId, string phoneNumber);
+        Task<bool> OwnerWithPhoneNumberExistsAsync(string phoneNumber);
+
     }
 }

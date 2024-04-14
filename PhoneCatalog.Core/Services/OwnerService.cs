@@ -28,5 +28,23 @@ namespace PhoneCatalog.Core.Services
             return (await repository.AllNoTracking<Owner>()
                 .FirstOrDefaultAsync(o => o.UserId == userId))?.Id;
         }
+
+        public async Task CreateAsync(string userId, string phoneNumber)
+        {
+            await repository.AddAsync(new Owner()
+            {
+                UserId = userId,
+                PhoneNumber = phoneNumber
+            });
+
+            await repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> OwnerWithPhoneNumberExistsAsync(string phoneNumber)
+        {
+            return await repository.AllNoTracking<Owner>()
+                .AnyAsync(a => a.PhoneNumber == phoneNumber);
+        }
+
     }
 }
