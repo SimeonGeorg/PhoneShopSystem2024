@@ -1,0 +1,29 @@
+﻿﻿@{
+    ViewData["Title"] = "Add Phone";
+    @model PhoneAddModel;
+    @inject IOwnerService ownerService;
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+@if (await ownerService.IsExistByIdAsync(User.Id()) == false)
+{
+
+    <script>window.location.href = '@Url.Action("Become", "Owner")';</script>
+}
+else
+{
+
+    <partial name="_PhoneFormPartial" model="@Model" />
+}
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+
+   
+   
