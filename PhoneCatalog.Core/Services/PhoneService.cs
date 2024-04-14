@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using PhoneCatalog.Core.Contracts;
+using PhoneCatalog.Core.Models.Comment;
 using PhoneCatalog.Core.Models.Performance;
 using PhoneCatalog.Core.Models.Phone;
 using PhoneCatalog.Infrastructure.Data.Common;
@@ -100,6 +102,71 @@ namespace PhoneCatalog.Core.Services
                     Storage = p.Storage,
                 })
                 .FirstAsync();
+        }
+
+        public async Task<PerformanceDetailsModel> AllPerformanceAsync()
+        {
+            return await repository.AllNoTracking<Performance>()
+            .Select(perf => new PerformanceDetailsModel()
+            {
+                Id = perf.Id,
+                Processor = perf.Processor,
+                Battery = perf.Battery,
+                CameraPxl = perf.CameraPxl,
+                Storage = perf.Storage,
+                Ram = perf.Ram
+            })
+            .FirstAsync();
+        }
+
+        public async Task<CommentServiceModel> AllCommentsAsync()
+        {
+            return await repository.AllNoTracking<Comment>()
+            .Select(c => new CommentServiceModel()
+            {
+                Id = c.Id,
+                CommentText = c.CommentText,
+                PhoneId = c.PhoneId,
+            }).FirstAsync();
+            
+        }
+
+        public async Task<int> CreateAsync(PhoneAddModel model,int ownerId)
+        {
+                Phone phone = new Phone()
+                {
+                    Brand = model.Brand,
+                    Model = model.Model,
+                    Price = model.CategoryId,
+                    ImageUrl = model.ImageUrl,
+                    CategoryId = model.CategoryId,
+                    OwnerId = ownerId,
+                };
+                
+       
+
+                await repository.AddAsync(phone);
+                await repository.SaveChangesAsync();
+
+                return phone.Id;
+            
+        }
+
+        public async Task<bool> CategoryExistsAsync(int categoryId)
+        {
+            return await repository.AllNoTracking<CategoryType>()
+               .AnyAsync(c => c.Id == categoryId);
+        }
+        
+
+        public async Task<IEnumerable<PhoneCategoriesServiceModel>> AllCategoriesAsync()
+        {
+            return await repository.AllNoTracking<CategoryType>()
+               .Select(c => new PhoneCategoriesServiceModel()
+               {
+                   Id = c.Id,
+                   Name = c.Name,
+               }).ToListAsync();
         }
     }
 }
