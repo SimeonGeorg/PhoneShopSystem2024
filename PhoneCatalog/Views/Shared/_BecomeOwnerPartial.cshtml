@@ -1,0 +1,14 @@
+﻿@model CreateOwnerModel
+
+<form asp-action="Become" asp-controller="Owner" method="post">
+    <div class="owner-details">
+        <h4>Owner Information</h4>
+        <div class="form-group">
+            <label asp-for="PhoneNumber">Phone Number:</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+       
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
