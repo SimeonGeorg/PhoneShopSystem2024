@@ -1,4 +1,5 @@
-﻿using PhoneCatalog.Core.Models.Performance;
+﻿using PhoneCatalog.Core.Models.Comment;
+using PhoneCatalog.Core.Models.Performance;
 using PhoneCatalog.Core.Models.Phone;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ namespace PhoneCatalog.Core.Contracts
         Task<bool> ExistsAsync(int id);
         Task<PhoneDetailsServiceModel> PhoneDetailsByIdAsync(int id);
         Task<PerformanceDetailsModel> PerformanceDetailsByPhoneIdAsync(int id);
+        Task<PerformanceDetailsModel> AllPerformanceAsync();
+        Task<bool> CategoryExistsAsync(int categoryId);
+        Task<IEnumerable<PhoneCategoriesServiceModel>> AllCategoriesAsync();
+        Task<CommentServiceModel> AllCommentsAsync();
+        Task<int> CreateAsync(PhoneAddModel model,int ownerId);
+
+
 
     }
 }
