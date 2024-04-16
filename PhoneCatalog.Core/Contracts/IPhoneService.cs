@@ -26,6 +26,8 @@ namespace PhoneCatalog.Core.Contracts
         Task<PhoneEditFormModel> GetPhoneEditFormByIdAsync(int phoneId);
         Task EditAsync(int phoneId, PhoneEditFormModel model);
 
+        Task DeleteAsync(int phoneId);
+
 
 
     }

@@ -225,6 +225,11 @@ namespace PhoneCatalog.Core.Services
                 await repository.SaveChangesAsync();
             }
         }
+        public async Task DeleteAsync(int phoneId)
+        {
+            await repository.DeleteAsync<Phone>(phoneId);
+            await repository.SaveChangesAsync();
+        }
     }
 }
 
