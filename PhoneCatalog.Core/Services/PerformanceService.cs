@@ -1,10 +1,13 @@
-﻿using PhoneCatalog.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using PhoneCatalog.Core.Contracts;
+using PhoneCatalog.Core.Models.Performance;
 using PhoneCatalog.Core.Models.Phone;
 using PhoneCatalog.Infrastructure.Data.Common;
 using PhoneCatalog.Infrastructure.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,5 +36,25 @@ namespace PhoneCatalog.Core.Services
             await repository.SaveChangesAsync();
             return performance.Id;
         }
+        public async Task<PerformanceEditFormModel> GetPerformancesByPhoneId(int phoneId)
+        {
+            var performances = await repository.AllNoTracking<Performance>()
+              .Where(perf => perf.PhoneId == phoneId)
+              .Select(perf => new PerformanceEditFormModel()
+              {
+                 Id = perf.Id,
+                 Processor = perf.Processor,
+                 Ram = perf.Ram,
+                 Battery = perf.Battery,
+                 PhoneId = phoneId,
+                 CameraPxl = perf.CameraPxl,
+                 Storage = perf.Storage,
+                
+              })
+              .FirstOrDefaultAsync();
+
+            return performances;
+        }
+       
     }
 }
