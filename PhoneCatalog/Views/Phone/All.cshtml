@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AllPhoneServiceModel>
+﻿    @model IEnumerable<AllPhoneServiceModel>
 
 @{
     ViewBag.Title = "All Phones";
@@ -41,6 +41,19 @@
             margin-top: 10px;
             text-align: center;
         }
+
+        .details-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .details-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +66,7 @@
                 <div class="phone-details">
                     <p><strong>@phone.Brand</strong></p>
                     <p>@phone.Model</p>
+                    <button class="details-button" onclick="location.href='@Url.Action("Details", "Phone", new { id = phone.Id })'">Details</button>
                 </div>
             </div>
         }
