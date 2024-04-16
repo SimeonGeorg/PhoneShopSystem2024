@@ -55,6 +55,24 @@ namespace PhoneCatalog.Core.Services
 
             return performances;
         }
-       
+        public async Task<PerformanceDetailsModel> GetPerformancesByPhoneIdForDelete(int phoneId)
+        {
+            var performances = await repository.AllNoTracking<Performance>()
+              .Where(perf => perf.PhoneId == phoneId)
+              .Select(perf => new PerformanceDetailsModel()
+              {
+                  Id = perf.Id,
+                  Processor = perf.Processor,
+                  Ram = perf.Ram,
+                  Battery = perf.Battery,
+                  PhoneId = phoneId,
+                  CameraPxl = perf.CameraPxl,
+                  Storage = perf.Storage,
+
+              })
+              .FirstOrDefaultAsync();
+
+            return performances;
+        }
     }
 }

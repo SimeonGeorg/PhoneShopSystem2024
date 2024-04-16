@@ -12,5 +12,6 @@ namespace PhoneCatalog.Core.Contracts
     {
         Task<int> CreateAsync(PhoneAddModel model, int phoneId);
         Task<PerformanceEditFormModel>GetPerformancesByPhoneId(int phoneId);
+        Task<PerformanceDetailsModel> GetPerformancesByPhoneIdForDelete(int phoneId);
     }
 }
