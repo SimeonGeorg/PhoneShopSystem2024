@@ -22,6 +22,9 @@ namespace PhoneCatalog.Core.Contracts
         Task<IEnumerable<PhoneCategoriesServiceModel>> AllCategoriesAsync();
         Task<CommentServiceModel> AllCommentsAsync();
         Task<int> CreateAsync(PhoneAddModel model,int ownerId);
+        Task<bool> HasOwnerWithId(int phoneid, string id);
+        Task<PhoneEditFormModel> GetPhoneEditFormByIdAsync(int phoneId);
+        Task EditAsync(int phoneId, PhoneEditFormModel model);
 
 
 
