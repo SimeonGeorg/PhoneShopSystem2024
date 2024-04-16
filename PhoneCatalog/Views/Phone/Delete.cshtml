@@ -1,0 +1,35 @@
+﻿@model PhoneDetailsServiceModel
+
+@{
+    ViewBag.Title = "Delete Phone";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow-lg">
+                <img class="card-img-top" src="@Model.ImageUrl" alt="Phone Image">
+                <div class="card-body">
+                    <h3 class="card-title">@Model.Brand @Model.Model</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Price:</strong> @Model.Price</li>
+                        <li class="list-group-item"><strong>Category:</strong> @Model.Category</li>
+                        <li class="list-group-item"><strong>Owner Phone Number:</strong> @Model.OwnerPhoneNumber</li>
+                        <li class="list-group-item"><strong>Performance:</strong></li>
+                        <li class="list-group-item">- <strong>Processor:</strong> @Model.Performances.Processor</li>
+                        <li class="list-group-item">- <strong>Storage:</strong> @Model.Performances.Storage</li>
+                        <li class="list-group-item">- <strong>Battery:</strong> @Model.Performances.Battery</li>
+                        <li class="list-group-item">- <strong>Camera Pixels:</strong> @Model.Performances.CameraPxl</li>
+                        <li class="list-group-item">- <strong>RAM:</strong> @Model.Performances.Ram</li>
+                    </ul>
+                    <form asp-action="Delete" class="mt-4">
+                        <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
