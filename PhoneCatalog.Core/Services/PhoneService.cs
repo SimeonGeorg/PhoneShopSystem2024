@@ -168,6 +168,63 @@ namespace PhoneCatalog.Core.Services
                    Name = c.Name,
                }).ToListAsync();
         }
+
+        public async Task<bool> HasOwnerWithId(int phoneId, string userId)
+        {
+            return await repository.AllNoTracking<Phone>()
+                .AnyAsync(p => p.Id == phoneId && p.Owner.UserId == userId);
+        }
+
+        public async Task<PhoneEditFormModel> GetPhoneEditFormByIdAsync(int phoneId)
+        {
+            var phone = await repository.AllNoTracking<Phone>()
+                .Where(p => p.Id == phoneId)
+                .Select(p => new PhoneEditFormModel()
+                {
+                    Brand = p.Brand,
+                    Model = p.Model,
+                    Price = p.Price,
+                    ImageUrl = p.ImageUrl,
+                    CategoryId = p.CategoryId
+                    
+                })
+                .FirstOrDefaultAsync();    
+
+            if (phone != null)
+            {
+                phone.Categories = await AllCategoriesAsync();
+            }
+
+            return phone;
+        }
+
+        public async Task EditAsync(int phoneId, PhoneEditFormModel model)
+        {
+            var phone = await repository.GetByIdAsync<Phone>(phoneId);
+            var performance = await repository.GetByIdAsync<Performance>(model.Performances.Id);
+
+            if (phone != null)
+            {
+                phone.Brand = model.Brand;
+                phone.Model = model.Model;
+                phone.Price = model.Price;
+                phone.ImageUrl = model.ImageUrl;
+                phone.CategoryId = model.CategoryId;
+                
+                await repository.SaveChangesAsync();
+            }
+            if (performance != null)
+            {
+                performance.Storage = model.Performances.Storage;
+                performance.Processor = model.Performances.Processor;
+                performance.Battery = model.Performances.Battery;
+                performance.CameraPxl = model.Performances.CameraPxl;
+                performance.Ram = model.Performances.Ram;
+                performance.Id = model.Performances.Id;
+                performance.PhoneId = phoneId;
+                await repository.SaveChangesAsync();
+            }
+        }
     }
 }
 
