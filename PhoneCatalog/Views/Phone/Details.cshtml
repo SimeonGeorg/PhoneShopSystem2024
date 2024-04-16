@@ -1,4 +1,5 @@
 ﻿@model PhoneDetailsServiceModel
+@inject IPhoneService phoneService
 
 <!DOCTYPE html>
 <html>
@@ -79,8 +80,11 @@
                 <p><strong>Camera:</strong> @Model.Performances.CameraPxl</p>
                 <p><strong>RAM:</strong> @Model.Performances.Ram</p>
             </div>
+            @if(await phoneService.HasOwnerWithId(Model.Id,User.Id()) == true)
+            {
                 <a href="@Url.Action("Edit", "Phone", new { id = Model.Id })" class="btn">Edit</a>
                 <a href="@Url.Action("Delete", "Phone", new { id = Model.Id })" class="btn">Delete</a>
+            }  
         </div>
     </div>
 </body>
