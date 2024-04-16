@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PhoneCatalog.Infrastructure.Data.Models;
 
 namespace PhoneCatalog.Infrastructure.Data.Common
 {
@@ -38,5 +39,6 @@ namespace PhoneCatalog.Infrastructure.Data.Common
         {
             return await context.SaveChangesAsync();
         }
+        
     }
 }
