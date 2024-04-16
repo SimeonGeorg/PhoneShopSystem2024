@@ -14,7 +14,7 @@ namespace PhoneCatalog.Controllers
         private readonly IPhoneService phoneService;
         private readonly IOwnerService ownerService;
         private readonly IPerformanceService performanceService;
-      
+
 
         public PhoneController(
             ILogger<PhoneController> logger,
@@ -41,7 +41,7 @@ namespace PhoneCatalog.Controllers
             var userId = User.Id();
             IEnumerable<PhoneServiceModel> model;
 
-            
+
 
             if (await ownerService.IsExistByIdAsync(userId))
             {
@@ -63,10 +63,10 @@ namespace PhoneCatalog.Controllers
             {
                 return BadRequest();
             }
-            
+
             var model = await phoneService.PhoneDetailsByIdAsync(id);
             model.Performances = await phoneService.PerformanceDetailsByPhoneIdAsync(model.Id);
-                  
+
             return View(model);
         }
 
@@ -93,15 +93,66 @@ namespace PhoneCatalog.Controllers
                 return View(modelPhone);
             }
 
-            int? ownerId = await ownerService.GetOwnerIdAsync(User.Id());         
+            int? ownerId = await ownerService.GetOwnerIdAsync(User.Id());
 
             int newPhoneId = await phoneService.CreateAsync(modelPhone, ownerId ?? 0);
 
-            int performance = await performanceService.CreateAsync(modelPhone,newPhoneId);
-            
+            int performance = await performanceService.CreateAsync(modelPhone, newPhoneId);
+
 
             return RedirectToAction(nameof(Details), new { id = newPhoneId });
         }
 
-    }
-}
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await phoneService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await phoneService.HasOwnerWithId(id, User.Id()) == false)
+            //&& User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            var phoneModel = await phoneService.GetPhoneEditFormByIdAsync(id);
+            phoneModel.Performances = await performanceService.GetPerformancesByPhoneId(id);
+
+            return View(phoneModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, PhoneEditFormModel phoneModel)
+        {
+            if (await phoneService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await phoneService.HasOwnerWithId(id, User.Id()) == false)
+                //&& User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            if (await phoneService.CategoryExistsAsync(phoneModel.CategoryId) == false)
+            {
+                ModelState.AddModelError(nameof(phoneModel.CategoryId), "Category does not exist");
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                phoneModel.Categories = await phoneService.AllCategoriesAsync();
+
+                return View(phoneModel);
+            }
+
+            await phoneService.EditAsync(id, phoneModel);
+           
+
+            return RedirectToAction(nameof(Details), new { id});
+
+        }
+    } }
