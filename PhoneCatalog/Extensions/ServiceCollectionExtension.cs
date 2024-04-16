@@ -14,6 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IPhoneService, PhoneService>();
             services.AddScoped<IOwnerService, OwnerService>();
             services.AddScoped<IPerformanceService, PerformanceService>();
+            services.AddScoped<ICommentService, CommentService>();
 
             return services;
         }
