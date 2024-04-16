@@ -25,7 +25,6 @@ namespace PhoneCatalog.Core.Contracts
         Task<bool> HasOwnerWithId(int phoneid, string id);
         Task<PhoneEditFormModel> GetPhoneEditFormByIdAsync(int phoneId);
         Task EditAsync(int phoneId, PhoneEditFormModel model);
-
         Task DeleteAsync(int phoneId);
 
 

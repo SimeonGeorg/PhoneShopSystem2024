@@ -155,4 +155,53 @@ namespace PhoneCatalog.Controllers
             return RedirectToAction(nameof(Details), new { id});
 
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (await phoneService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await phoneService.HasOwnerWithId(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
+
+            var phone = await phoneService.PhoneDetailsByIdAsync(id);
+            var performances = await performanceService.GetPerformancesByPhoneIdForDelete(phone.Id);
+
+            var phoneModel = new PhoneDetailsServiceModel()
+            {
+                Id = id,
+                Brand = phone.Brand,
+                Model = phone.Model,
+                ImageUrl = phone.ImageUrl,
+                Price = phone.Price,
+                Category = phone.Category,
+                OwnerId = phone.OwnerId,
+            };
+            phoneModel.Performances = performances;
+
+            return View(phoneModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(PhoneDetailsServiceModel phoneModel)
+        {
+            if (await phoneService.ExistsAsync(phoneModel.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await phoneService.HasOwnerWithId(phoneModel.Id, User.Id()) == false)
+               
+            {
+                return Unauthorized();
+            }
+
+            await phoneService.DeleteAsync(phoneModel.Id);
+
+            return RedirectToAction(nameof(All));
+        }
     } }
