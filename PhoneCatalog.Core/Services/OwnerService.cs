@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhoneCatalog.Core.Contracts;
+using PhoneCatalog.Core.Models.Owner;
 using PhoneCatalog.Infrastructure.Data.Common;
 using PhoneCatalog.Infrastructure.Data.Models;
 using System;
@@ -46,5 +47,16 @@ namespace PhoneCatalog.Core.Services
                 .AnyAsync(a => a.PhoneNumber == phoneNumber);
         }
 
+        public async Task<OwnerPersonalModel> GetOwnerPersonalInfo(int ownerId)
+        {
+            return await repository.AllNoTracking<Owner>()
+                .Where(o => o.Id == ownerId)
+                .Select(o => new OwnerPersonalModel()
+                {
+                    Id = o.Id,
+                    PhoneNumber = o.PhoneNumber,
+                    UserId = o.UserId
+                }).FirstAsync();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneCatalog.Core.Models.Owner;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace PhoneCatalog.Core.Contracts
         Task<int?> GetOwnerIdAsync(string userId);
         Task CreateAsync(string userId, string phoneNumber);
         Task<bool> OwnerWithPhoneNumberExistsAsync(string phoneNumber);
+        Task<OwnerPersonalModel> GetOwnerPersonalInfo(int ownerId);
 
     }
 }

@@ -1,0 +1,115 @@
+﻿@model OwnerPersonalModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owner Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .list-group-item {
+            border: none;
+            padding: 10px;
+        }
+
+        .phone-details {
+            margin-top: 10px;
+        }
+
+        .phone-brand {
+            font-weight: bold;
+        }
+
+        .phone-model {
+            font-style: italic;
+            color: #666;
+        }
+
+        .comment-text {
+            font-style: italic;
+            color: #666;
+        }
+
+        .phone-image {
+            max-width: 50px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Owner Information
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <strong>Owner Phone Number:</strong> @Model.PhoneNumber
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Phones
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    @foreach (var phone in Model.Phones)
+                    {
+                        <div class="list-group-item phone-details">
+                            <img src ="@phone.ImageUrl" class="phone-image" />
+                            <span class="phone-brand">@phone.Brand</span>
+                            <br />
+                            <span class="phone-model">Model: @phone.Model</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Comments
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="list-group-item">
+                            <span class="comment-text">Text: @comment.CommentText</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
