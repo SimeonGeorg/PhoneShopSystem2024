@@ -36,9 +36,6 @@ namespace PhoneCatalog.Controllers
             {
                 var ownerId = await ownerService.GetOwnerIdAsync(userId) ?? 0;
                 commentsModel = await commentService.GetMineComents(ownerId);
-                var owner = await ownerService.GetOwnerPersonalInfo(ownerId);
-                
-                
                 
                 return View(commentsModel);     
             }
@@ -46,6 +43,27 @@ namespace PhoneCatalog.Controllers
             {
                 commentsModel = await commentService.AllCommentByUserId(userId);
             }
+            return View(commentsModel);
+        }
+        [HttpGet]
+        public async Task<IActionResult> PhoneComment(int phoneId,int ownerId)
+        {
+            var userId = User.Id();
+            CommentPhoneDisplayModel commentsModel;
+            
+
+            if (await ownerService.IsExistByIdAsync(userId))
+            {
+
+                commentsModel = await commentService.GetPhoneCommentsModels(phoneId);
+                commentsModel.Comments = await commentService.AllCommentsByPhoneId(phoneId);
+                return View(commentsModel);
+            }
+            else
+            {
+                commentsModel = await commentService.GetPhoneCommentsModels(phoneId);
+            }
+           
             return View(commentsModel);
         }
 
@@ -80,7 +98,7 @@ namespace PhoneCatalog.Controllers
                 await ownerService.AddCommentToOwner(ownerId, commentModel);
             
 
-            return RedirectToAction(nameof(Mine), new { commentId });
+            return RedirectToAction(nameof(Mine), new { commentId,commentModel.PhoneId });
         }
     }
 }
