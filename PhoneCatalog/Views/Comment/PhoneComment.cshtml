@@ -1,0 +1,64 @@
+﻿@model CommentPhoneDisplayModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phone Details with Comments</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .phone-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+            .phone-details img {
+                max-width: 200px; /* Reduced image size */
+                border-radius: 10px;
+                margin-bottom: 20px;
+            }
+
+        .comment-list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .comment {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="phone-details">
+            <img src="@Model.ImageUrl" alt="Phone Image" />
+            <h2>@Model.Brand @Model.Model</h2>
+            <h4>Comments:</h4>
+            <ul class="comment-list">
+                @foreach (var comment in Model.Comments)
+                {
+                    <li class="comment">
+                        <p>@comment.CommentText</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CommentServiceModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Comment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .phone-details {
+            margin-bottom: 20px;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .comment-text {
+            margin-bottom: 5px;
+        }
+
+        .comment-author {
+            font-style: italic;
+            color: #666;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>All My Comments</h2>
+        <hr>
+        <div class="phone-details">
+           
+            <h4>Comments:</h4>
+            @foreach (var comment in Model)
+            {
+                <div class="comment">
+                    <p class="comment-text">@comment.CommentText</p>
+                    <p class="comment-author">By: @comment.OwnerId</p>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
