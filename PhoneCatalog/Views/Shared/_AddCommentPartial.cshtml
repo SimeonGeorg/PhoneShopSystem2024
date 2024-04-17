@@ -1,0 +1,28 @@
+﻿@model CommentAddModel
+
+<div id="commentForm">
+    <form asp-action="Add" asp-controller="Comment" method="post">
+        <div class="form-group">
+            <label asp-for="CommentText" class="font-weight-bold">Your Comment:</label>
+            <textarea asp-for="CommentText" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="CommentText" class="text-danger"></span>
+        </div>
+        <input type="hidden" asp-for="PhoneId" />
+        <input type="hidden" asp-for="OwnerId" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<style>
+    #commentForm {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        #commentForm textarea {
+            resize: vertical;
+        }
+</style>

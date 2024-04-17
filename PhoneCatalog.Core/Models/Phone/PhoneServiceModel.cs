@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static PhoneCatalog.Core.Constants.MessageConstants;
 using static PhoneCatalog.Infrastructure.Constants.DataConstants;
+using PhoneCatalog.Core.Models.Comment;
 
 namespace PhoneCatalog.Core.Models.Phone
 {
@@ -39,6 +40,7 @@ namespace PhoneCatalog.Core.Models.Phone
         [Required(ErrorMessage = RequiredMessage)]
         public string ImageUrl { get; set; } = string.Empty;
         
+        public IEnumerable<CommentServiceModel> Comments { get; set; } = new List<CommentServiceModel>();
        
        
     }
