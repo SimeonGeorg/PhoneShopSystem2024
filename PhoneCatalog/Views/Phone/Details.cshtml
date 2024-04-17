@@ -85,7 +85,8 @@
                 <a href="@Url.Action("Edit", "Phone", new { id = Model.Id })" class="btn">Edit</a>
                 <a href="@Url.Action("Delete", "Phone", new { id = Model.Id })" class="btn">Delete</a>
             }
-            <a href="@Url.Action("Add", "Comment", new { id = Model.Id })" class="btn">Write Comment</a>
+            <a href="@Url.Action("Add", "Comment", new { phoneId = Model.Id, ownerId = Model.OwnerId })" class="btn">Write Comment</a>
+            <a href="@Url.Action("PhoneComment", "Comment", new { phoneId = Model.Id, ownerId = Model.OwnerId })" class="btn">View Comments</a>
         </div>
     </div>
 </body>

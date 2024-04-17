@@ -1,7 +1,7 @@
 ﻿﻿@{
-    ViewData["Title"] = "Add Phone";
     @model PhoneAddModel;
     @inject IOwnerService ownerService;
+    ViewData["Title"] = "Add Phone";
 }
 
 <h2 class="text-center">@ViewData["Title"]</h2>
@@ -9,7 +9,6 @@
 
 @if (await ownerService.IsExistByIdAsync(User.Id()) == false)
 {
-
     <script>window.location.href = '@Url.Action("Become", "Owner")';</script>
 }
 else
