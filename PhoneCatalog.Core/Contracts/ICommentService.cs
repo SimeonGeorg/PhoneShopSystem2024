@@ -1,4 +1,5 @@
 ﻿using PhoneCatalog.Core.Models.Comment;
+using PhoneCatalog.Core.Models.Phone;
 
 namespace PhoneCatalog.Core.Contracts
 {
@@ -10,6 +11,11 @@ namespace PhoneCatalog.Core.Contracts
         Task<IEnumerable<CommentServiceModel>> GetMineComents(int ownerId);
         Task <CommentPhoneDisplayModel> GetPhoneCommentsModels(int phoneId);
         Task<IEnumerable<CommentServiceModel>> AllCommentsByPhoneId(int phoneId);
-        
+        Task<bool> ExistsAsync(int id);
+        Task<bool> HasOwnerWithId(int id,string userId);
+        Task<CommentAddModel> GetCommentEditFormByIdAsync(int commentId);
+        Task EditAsync(int commentId, CommentAddModel model);
+
+
     }
 }
