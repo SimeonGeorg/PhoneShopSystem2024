@@ -14,6 +14,8 @@ namespace PhoneCatalog.Core.Contracts
         Task<IEnumerable<CommentServiceModel>> AllCommentByUserId(string userId);
         Task<int> CreateAsync(CommentAddModel commentModel);
         Task<IEnumerable<CommentServiceModel>> GetMineComents(int ownerId);
+        Task <CommentPhoneDisplayModel> GetPhoneCommentsModels(int phoneId);
+        Task<IEnumerable<CommentServiceModel>> AllCommentsByPhoneId(int phoneId);
         
     }
 }

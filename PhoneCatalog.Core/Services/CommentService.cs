@@ -72,6 +72,32 @@ namespace PhoneCatalog.Core.Services
                })
                .ToListAsync();
         }
+
+        public async Task <CommentPhoneDisplayModel> GetPhoneCommentsModels(int phoneId)
+        {
+            return await repository.AllNoTracking<Phone>()
+                .Where(p => p.Id == phoneId)
+                .Select(p => new CommentPhoneDisplayModel()
+                {
+                    ImageUrl = p.ImageUrl,
+                    Brand = p.Brand,
+                    Model = p.Model,
+                }).FirstAsync();
+                
+        }
+
+        public async Task <IEnumerable<CommentServiceModel>> AllCommentsByPhoneId (int phoneId)
+        {
+            return await repository.AllNoTracking<Comment>()
+                .Where(c => c.PhoneId == phoneId)
+                .Select(c => new CommentServiceModel()
+                {
+                    Id = c.Id,
+                    CommentText = c.CommentText,
+                    PhoneId = c.PhoneId,
+                    OwnerId= c.OwnerId
+                }).ToListAsync();
+        }
     }
 }
 
