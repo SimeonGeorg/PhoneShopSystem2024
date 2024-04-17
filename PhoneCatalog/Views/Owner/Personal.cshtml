@@ -23,7 +23,7 @@
         }
 
         .card-header {
-            background-color: #007bff;
+            background-color: #343a40; /* Dark gray */
             color: #fff;
             font-weight: bold;
         }
@@ -43,22 +43,46 @@
 
         .phone-brand {
             font-weight: bold;
+            color: #007bff; /* Blue */
         }
 
         .phone-model {
             font-style: italic;
-            color: #666;
+            color: #6c757d; /* Gray */
         }
 
         .comment-text {
             font-style: italic;
-            color: #666;
+            color: #6c757d; /* Gray */
         }
 
         .phone-image {
-            max-width: 50px; 
+            max-width: 50px;
             height: auto;
         }
+
+        .comment-box {
+            border: 1px solid #ced4da; /* Light gray */
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff; /* White */
+        }
+
+        .edit-button {
+            margin-top: 10px;
+        }
+
+        /* Custom colors for buttons */
+        .btn-primary {
+            background-color: #007bff; /* Blue */
+            border-color: #007bff; /* Blue */
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3; /* Darker blue */
+                border-color: #0056b3; /* Darker blue */
+            }
     </style>
 </head>
 <body>
@@ -76,39 +100,45 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                Phones
-            </div>
-            <div class="card-body">
-                <div class="list-group">
-                    @foreach (var phone in Model.Phones)
-                    {
-                        <div class="list-group-item phone-details">
-                            <img src ="@phone.ImageUrl" class="phone-image" />
-                            <span class="phone-brand">@phone.Brand</span>
-                            <br />
-                            <span class="phone-model">Model: @phone.Model</span>
+        <div class="container">
+            @foreach (var phone in Model.Phones)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        @phone.Brand - @phone.Model
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <div class="list-group-item phone-details">
+                                <img src="@phone.ImageUrl" class="phone-image" />
+                                <span class="phone-brand">@phone.Brand</span>
+                                <br />
+                                <span class="phone-model">Model: @phone.Model</span>
+                            </div>
                         </div>
-                    }
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header">
-                Comments
-            </div>
-            <div class="card-body">
-                <div class="list-group">
-                    @foreach (var comment in Model.Comments)
-                    {
-                        <div class="list-group-item">
-                            <span class="comment-text">Text: @comment.CommentText</span>
+                <div class="card">
+                    <div class="card-header">
+                        Comments for @phone.Brand - @phone.Model
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            @foreach (var comment in Model.Comments.Where(c => c.PhoneId == phone.Id))
+                            {
+                                <div class="comment-box">
+                                    <p class="comment-text">Text: @comment.CommentText</p>
+                                    @if (comment.OwnerId == Model.Id)
+                                    {
+                                        <a href="@Url.Action("Edit", "Comment", new { id = comment.Id })" class="edit-button btn btn-primary">Edit</a>
+                                    }
+                                </div>
+                            }
                         </div>
-                    }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </body>

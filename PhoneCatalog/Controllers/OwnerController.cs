@@ -51,7 +51,7 @@ namespace PhoneCatalog.Controllers
             return RedirectToAction(nameof(PhoneController.Add), "Phone");
         }
         [HttpGet]
-        public async Task<IActionResult> Personal()
+        public async Task<IActionResult> Personal(int commentId,int phoneId)
         {
             var userId = User.Id();
             OwnerPersonalModel model;
