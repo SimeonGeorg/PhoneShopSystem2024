@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using PhoneCatalog.Core.Contracts;
 using PhoneCatalog.Core.Models;
 using PhoneCatalog.Core.Models.Comment;
@@ -12,35 +13,74 @@ namespace PhoneCatalog.Controllers
     {
         private readonly ICommentService commentService;
         private readonly IOwnerService ownerService;
+        private readonly IPhoneService phoneService;
 
         public CommentController(
             ICommentService _commentService,
-            IOwnerService _ownerService)
+            IOwnerService _ownerService,
+            IPhoneService _phoneService)
         {
             commentService = _commentService;
             ownerService = _ownerService;
+            phoneService = _phoneService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
             var userId = User.Id();
-            IEnumerable<CommentServiceModel> model;
-
-
+            IEnumerable<CommentServiceModel> commentsModel;
+         
 
             if (await ownerService.IsExistByIdAsync(userId))
             {
-                int ownerId = await ownerService.GetOwnerIdAsync(userId) ?? 0;
-                model = await commentService.AllCommentByOwnerId(ownerId);
-                if (model != null)
-                    return View(model);
+                var ownerId = await ownerService.GetOwnerIdAsync(userId) ?? 0;
+                commentsModel = await commentService.GetMineComents(ownerId);
+                var owner = await ownerService.GetOwnerPersonalInfo(ownerId);
+                
+                
+                
+                return View(commentsModel);     
             }
             else
             {
-                model = await commentService.AllCommentByUserId(userId);
+                commentsModel = await commentService.AllCommentByUserId(userId);
             }
-            return View(model);
+            return View(commentsModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add(int phoneId, int ownerId)
+        {
+            var commentModel = new CommentAddModel()
+            {
+                PhoneId = phoneId,
+                OwnerId = ownerId
+            };
+
+            return View(commentModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(CommentAddModel commentModel)
+        {
+            if (await phoneService.ExistsAsync(commentModel.PhoneId) == false)
+            {
+                ModelState.AddModelError(nameof(commentModel.PhoneId), "Phone does not exist");
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                return View();
+            }
+
+            int? ownerId = await ownerService.GetOwnerIdAsync(User.Id());
+            int commentId = await commentService.CreateAsync(commentModel);
+            
+                await ownerService.AddCommentToOwner(ownerId, commentModel);
+            
+
+            return RedirectToAction(nameof(Mine), new { commentId });
         }
     }
 }
