@@ -1,5 +1,4 @@
 ﻿using PhoneCatalog.Core.Models.Comment;
-using PhoneCatalog.Core.Models.Phone;
 
 namespace PhoneCatalog.Core.Contracts
 {
