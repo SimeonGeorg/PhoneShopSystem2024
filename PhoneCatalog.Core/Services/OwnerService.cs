@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PhoneCatalog.Core.Contracts;
+using PhoneCatalog.Core.Models.Comment;
 using PhoneCatalog.Core.Models.Owner;
 using PhoneCatalog.Infrastructure.Data.Common;
 using PhoneCatalog.Infrastructure.Data.Models;
@@ -58,5 +59,32 @@ namespace PhoneCatalog.Core.Services
                     UserId = o.UserId
                 }).FirstAsync();
         }
+
+        public async Task AddCommentToOwner(int? ownerId, CommentAddModel commentModel)
+        {
+            if (ownerId != null)
+            {
+                var owner = await repository.GetByIdAsync<Owner>(ownerId);
+                var coment = new Comment()
+                {
+                    Id = commentModel.Id,
+                    CommentText = commentModel.CommentText,
+                    PhoneId = commentModel.PhoneId,
+                    OwnerId = commentModel.OwnerId
+                };
+
+                if(owner != null)
+                {
+                    owner.Comments.ToList().Add(coment);
+                    await repository.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Owner not found");
+            }
+        }
     }
 }
+
+
