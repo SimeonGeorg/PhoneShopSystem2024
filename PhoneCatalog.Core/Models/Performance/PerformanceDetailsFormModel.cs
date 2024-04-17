@@ -6,7 +6,8 @@ namespace PhoneCatalog.Core.Models.Performance
 {
     public class PerformanceDetailsFormModel
     {
-       
+        public  int Id { get; set; }
+
         [Required(ErrorMessage = RequiredMessage)]
         [Display(Name = "Phone RAM memory")]
         [StringLength(PhonePerformanceMaxLength

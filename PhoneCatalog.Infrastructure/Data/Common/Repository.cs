@@ -24,7 +24,7 @@ namespace PhoneCatalog.Infrastructure.Data.Common
             return DbSet<T>();
         }
 
-        public IQueryable<T> AllNoTracking<T>() where T : class
+        public  IQueryable<T> AllNoTracking<T>() where T : class
         {
             return DbSet<T>().AsNoTracking();
         }

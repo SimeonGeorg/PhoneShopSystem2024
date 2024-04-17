@@ -25,7 +25,7 @@ namespace PhoneCatalog.Core.Services
                     Id = p.Id,
                     Brand = p.Brand,
                     Model = p.Model,
-                    ImageUrl = p.ImageUrl,
+                    ImageUrl = p.ImageUrl
                 })
                 .ToListAsync();
 
@@ -34,7 +34,6 @@ namespace PhoneCatalog.Core.Services
         public async Task<IEnumerable<PhoneServiceModel>> AllPhonesByOwnerIdAsync(int ownerId)
         {
             return await repository.AllNoTracking<Phone>()
-
                .Where(p => p.OwnerId == ownerId)
                .Select(p => new PhoneServiceModel()
                {

@@ -68,5 +68,6 @@ namespace PhoneCatalog.Core.Services
 
             return performances;
         }
+
     }
 }
