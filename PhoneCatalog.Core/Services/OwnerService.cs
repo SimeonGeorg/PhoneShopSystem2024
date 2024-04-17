@@ -4,11 +4,6 @@ using PhoneCatalog.Core.Models.Comment;
 using PhoneCatalog.Core.Models.Owner;
 using PhoneCatalog.Infrastructure.Data.Common;
 using PhoneCatalog.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneCatalog.Core.Services
 {

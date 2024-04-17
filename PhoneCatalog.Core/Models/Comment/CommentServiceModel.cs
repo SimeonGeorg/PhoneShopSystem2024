@@ -1,14 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PhoneCatalog.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static PhoneCatalog.Infrastructure.Constants.DataConstants;
+﻿using System.ComponentModel.DataAnnotations;
 using static PhoneCatalog.Core.Constants.MessageConstants;
+using static PhoneCatalog.Infrastructure.Constants.DataConstants;
 
 
 namespace PhoneCatalog.Core.Models.Comment

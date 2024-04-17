@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Logging;
 using PhoneCatalog.Core.Contracts;
 using PhoneCatalog.Core.Models.Comment;
 using PhoneCatalog.Core.Models.Performance;

@@ -4,12 +4,6 @@ using PhoneCatalog.Core.Models.Performance;
 using PhoneCatalog.Core.Models.Phone;
 using PhoneCatalog.Infrastructure.Data.Common;
 using PhoneCatalog.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneCatalog.Core.Services
 {

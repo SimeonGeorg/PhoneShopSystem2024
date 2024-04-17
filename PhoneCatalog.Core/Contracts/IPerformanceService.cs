@@ -1,10 +1,5 @@
 ﻿using PhoneCatalog.Core.Models.Performance;
 using PhoneCatalog.Core.Models.Phone;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneCatalog.Core.Contracts
 {

@@ -1,13 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PhoneCatalog.Core.Contracts;
-using PhoneCatalog.Core.Models.Performance;
-using PhoneCatalog.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PhoneCatalog.Core.Models.Performance;
 
 namespace PhoneCatalog.Core.Models.Phone
 {

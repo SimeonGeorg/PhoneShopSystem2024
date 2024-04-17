@@ -1,11 +1,6 @@
 ﻿using PhoneCatalog.Core.Models.Comment;
 using PhoneCatalog.Core.Models.Performance;
 using PhoneCatalog.Core.Models.Phone;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneCatalog.Core.Contracts
 {
@@ -26,8 +21,5 @@ namespace PhoneCatalog.Core.Contracts
         Task<PhoneEditFormModel> GetPhoneEditFormByIdAsync(int phoneId);
         Task EditAsync(int phoneId, PhoneEditFormModel model);
         Task DeleteAsync(int phoneId);
-
-
-
     }
 }

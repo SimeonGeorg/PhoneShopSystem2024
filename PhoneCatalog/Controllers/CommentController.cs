@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol;
 using PhoneCatalog.Core.Contracts;
-using PhoneCatalog.Core.Models;
 using PhoneCatalog.Core.Models.Comment;
-using PhoneCatalog.Core.Models.Phone;
-using PhoneCatalog.Core.Services;
 using System.Security.Claims;
 
 namespace PhoneCatalog.Controllers

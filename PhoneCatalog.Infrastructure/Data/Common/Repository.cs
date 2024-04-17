@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PhoneCatalog.Infrastructure.Data.Models;
 
 namespace PhoneCatalog.Infrastructure.Data.Common
 {

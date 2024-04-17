@@ -1,10 +1,5 @@
 ﻿using PhoneCatalog.Core.Models.Comment;
 using PhoneCatalog.Core.Models.Owner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhoneCatalog.Core.Contracts
 {

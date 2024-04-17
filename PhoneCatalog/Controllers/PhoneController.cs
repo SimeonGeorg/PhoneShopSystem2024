@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhoneCatalog.Core.Contracts;
-using PhoneCatalog.Core.Models.Owner;
 using PhoneCatalog.Core.Models.Phone;
-using PhoneCatalog.Core.Services;
-using PhoneCatalog.Infrastructure.Data.Models;
 using System.Security.Claims;
 
 namespace PhoneCatalog.Controllers
