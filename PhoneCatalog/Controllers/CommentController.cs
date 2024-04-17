@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhoneCatalog.Core.Contracts;
 using PhoneCatalog.Core.Models.Comment;
+using PhoneCatalog.Core.Models.Phone;
+using PhoneCatalog.Core.Services;
 using System.Security.Claims;
 
 namespace PhoneCatalog.Controllers
@@ -94,7 +96,52 @@ namespace PhoneCatalog.Controllers
                 await ownerService.AddCommentToOwner(ownerId, commentModel);
             
 
-            return RedirectToAction(nameof(Mine), new { commentId,commentModel.PhoneId });
+            return RedirectToAction("Personal","Owner", new { commentId,commentModel.PhoneId });
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (await commentService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await commentService.HasOwnerWithId(id, User.Id()) == false)
+            //&& User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+
+            var commentModel = await commentService.GetCommentEditFormByIdAsync(id);
+            
+
+            return View(commentModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, CommentAddModel commentModel)
+        {
+            if (await commentService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await commentService.HasOwnerWithId(id, User.Id()) == false)
+            //&& User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }
+           
+            if (ModelState.IsValid == false)
+            {
+                return View(commentModel);
+            }
+
+            await commentService.EditAsync(id, commentModel);
+
+
+            return RedirectToAction(nameof(PhoneComment), new {phoneId = commentModel.PhoneId ,ownerId = commentModel.OwnerId});
+
         }
     }
 }
