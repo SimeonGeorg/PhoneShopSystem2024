@@ -1,0 +1,59 @@
+﻿@model CommentAddModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Comment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .edit-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .error-message {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="edit-form">
+            <h2 class="text-center mb-4">Edit Comment</h2>
+            <form asp-action="Edit" asp-controller="Comment" method="post">
+                <div class="form-group">
+                    <label for="CommentText">Comment:</label>
+                    <textarea id="CommentText" name="CommentText" class="form-control" rows="5">@Model.CommentText</textarea>
+                    <span class="error-message">@Html.ValidationMessageFor(model => model.CommentText)</span>
+                </div>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="PhoneId" value="@Model.PhoneId" />
+                <input type="hidden" name="OwnerId" value="@Model.OwnerId" />
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
